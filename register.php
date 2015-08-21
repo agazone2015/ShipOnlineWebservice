@@ -34,40 +34,29 @@
         <legend>New Customer Registration Form</legend>
         <p>
           <label>Name</label>
-          <input type = "text"
-                 id = "myName"
-                 value = "name here" />
+          <input type = "text" name = "myName" value = "name here" />
         </p>
         <p>
           <label>Password</label>
-          <input type = "password"
-                 id = "myPwd"
-                 value = "secret" />
+          <input type = "password" name = "myPwd" value = "secret" />
         </p>
     
          <p>
           <label>Confirm password</label>
-          <input type = "password"
-                 id = "myPwd"
-                 value = "secret" />
+          <input type = "password" name = "myPwd" value = "secret" />
         </p>
          
          <p>
           <label>email address</label> 
-          <input type = "email"   
-                 id = "myEmail"
-                 value = "email" />   <!-- check that -->
+          <input type = "email" name = "myEmail" value = "email" /> 
         </p>
          
         <p>
           <label>Contact Phone</label>
-          <input type = "phone"
-                 id = "myPhone"
-                 value = "phone" />   <!-- check that -->
+          <input type = "phone" name = "myPhone" value = "phone" /> 
         </p>
         </p>
-           <button type = "button">
-            REGISTER
+           <input type="submit" value="Register" /> <br/>
           </button> 
       </fieldset>   
     </form>
@@ -85,4 +74,24 @@
     </div>
 </body>
 <!-- /Body -->
+
+<!--PHP-->
+
+<?php
+    if(isset($_GET['myName']) && isset($_GET['myPwd']) && isset($_GET['myEmail']) && isset($_GET['myPhone']))
+  {
+    $userName = $_GET['myName'];
+	$userPas = $_GET['myPwd'];
+	$userEmail = $_GET['myEmail'];
+    $userPhone = $_GET['myPhone'];
+	$userInfo = $userName .", " . $userPas .", " . $userEmail .",  " . $userPhone ."\n";
+    $userFile = "user_db.txt";
+    if(file_put_contents($userFile, $userInfo, FILE_APPEND) > 0)
+      echo "<p><em>{$_GET['myName']}</em> has been registered as a member of the Shipping Online Service.</p>";
+    else echo "<p>Registration error!</p>";
+  }
+  //else {
+  //  echo "<p>Please enter your name and phone number and click the Register button.</p>";
+  //}
+?>
 </html>
