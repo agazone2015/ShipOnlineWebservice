@@ -1,0 +1,32 @@
+ 
+CREATION OF THE TABLE CUSTOMER
+
+$sql = "create table IF NOT EXISTS CUSTOMER(
+      userid int auto_increment primary key,
+      myName varchar (20) NOT NULL,
+      myPwd varchar (10) NOT NULL,
+      confPwd varchar(10) NOT NULL,
+      myEmail varchar (10) NOT NULL,
+      myPhone int (15) NOT NULL
+    )”;
+
+ 
+CREATION OF THE TABLE REQUEST
+
+ $sql = "create table IF NOT EXISTS REQUEST
+    (
+RequestId int NOT NULL auto_increment PRIMARY KEY,
+        userid int NOT NULL,
+RequestDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ItemDesc varchar(100) NOT NULL,
+ItemWeight int (4) NOT NULL,
+PickAddress varchar (40) NOT NULL,
+PickSuburb varchar (10) NOT NULL,
+PickDate  Date NOT NULL,
+PickTime  Time NOT NULL,
+Reciver varchar (15) NOT NULL,
+DeliveryAddress varchar (40) NOT NULL,
+DeliverySuburb varchar (10) NOT NULL,
+State varchar (15) NOT NULL,
+FOREIGN KEY (userid) REFERENCES CUSTOMER (userid)
+    )";
